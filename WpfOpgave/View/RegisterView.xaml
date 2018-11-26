@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="WpfOpgave.View.RegisterView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfOpgave.View"
+             xmlns:root="clr-namespace:WpfOpgave"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <Button Grid.Column="0" Content="Tilbage"
+                Command="{Binding DataContext.DisplayLoginView,
+                        RelativeSource={RelativeSource AncestorType={x:Type root:MainWindow}}, Mode=OneWay}">
+        </Button>
+
+        <Viewbox Grid.Row="0" Grid.Column="1" Height="45">
+            <TextBlock HorizontalAlignment="Center" Text="Opret Bruger"></TextBlock>
+        </Viewbox>
+
+        <Grid Grid.Row="2" Grid.Column="1" Margin="0,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Viewbox Grid.Column="0" Height="25">
+                <TextBlock Text="Navn:"/>
+            </Viewbox>
+            <TextBox Grid.Column="1" Height="25" Text="{Binding Path=FirstName}"/>
+
+            <Viewbox Grid.Column="0" Grid.Row="1" Height="25" Margin="0,30,0,0">
+                <TextBlock Text="Email:"/>
+            </Viewbox>
+            <TextBox Grid.Column="1" Grid.Row="1" Height="25" Margin="0,30,0,0" 
+                     Text="{Binding Path=Email}"/>
+
+            <Viewbox Grid.Column="0" Grid.Row="2" Height="25" Margin="0,30,0,0">
+                <TextBlock Text="Password:" Width="auto" />
+            </Viewbox>
+            <TextBox Grid.Column="1" Grid.Row="2" Height="25" Margin="0,30,0,0" 
+                     Text="{Binding Path=Password}"/>
+
+            <Button Content="Opret" Grid.Column="1" Grid.Row="4" Margin="0,10,0,10" 
+                    Command="{Binding RegisterCommand}"
+                    CommandParameter="{Binding DataContext,
+                        RelativeSource={RelativeSource AncestorType={x:Type root:MainWindow}}}"/>
+        </Grid>
+    </Grid>
+</UserControl>

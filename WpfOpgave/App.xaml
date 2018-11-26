@@ -2,8 +2,18 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:WpfOpgave"
+             xmlns:Views="clr-namespace:WpfOpgave.View"
+             xmlns:ViewModels="clr-namespace:WpfOpgave.ViewModel"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <DataTemplate DataType="{x:Type ViewModels:LoginViewModel}">
+            <Views:LoginView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type ViewModels:RegisterViewModel}">
+            <Views:RegisterView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type ViewModels:HomeViewModel}">
+            <Views:HomeView />
+        </DataTemplate>
     </Application.Resources>
 </Application>
