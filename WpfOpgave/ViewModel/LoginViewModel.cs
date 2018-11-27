@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using System.Windows;
 using System.Windows.Input;
 using WpfOpgave.Commands;
+using WpfOpgave.Session;
 
 namespace WpfOpgave.ViewModel
 {
@@ -56,13 +57,19 @@ namespace WpfOpgave.ViewModel
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@email", Email);
                     command.Parameters.AddWithValue("@password", Password);
-                    if (command.ExecuteReader().Read())
+
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        vm.ViewModel = new HomeViewModel();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Der skete en fejl");
+                        if (reader.Read())
+                        {
+                            int userId = reader.GetInt32(0);
+                            SessionManager.UserId = userId;
+                            vm.ViewModel = new HomeViewModel();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Der skete en fejl");
+                        }
                     }
                 }
             }

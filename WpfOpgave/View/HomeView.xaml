@@ -19,7 +19,7 @@
 
         <Label Grid.Row="0" Grid.Column="0"
                HorizontalAlignment="Center"
-               Content=""
+               Content="{Binding Path=FirstName}"
                FontSize="28" />
 
         <Grid Grid.Row="0" Grid.Column="1">
